@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/inventory.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        📦 IntelliStock
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MAIN MENU
+        </p>
+
+
+        <a href="dashboard.html"
+           class="menu-item">
+
+            <span>🏠</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="products.html"
+           class="menu-item">
+
+            <span>📦</span>
+            Products
+
+        </a>
+
+
+        <a href="inventory.html"
+           class="menu-item active">
+
+            <span>📊</span>
+            Inventory
+
+        </a>
+
+
+        <a href="suppliers.html"
+           class="menu-item">
+
+            <span>🚚</span>
+            Suppliers
+
+        </a>
+
+
+        <a href="sales.html"
+           class="menu-item">
+
+            <span>💰</span>
+            Sales
+
+        </a>
+
+
+        <p class="menu-title second-title">
+            INTELLIGENCE
+        </p>
+
+
+        <a href="prediction.html"
+           class="menu-item">
+
+            <span>🔮</span>
+            Stock Prediction
+
+        </a>
+
+
+        <a href="alerts.html"
+           class="menu-item">
+
+            <span>⚠️</span>
+            Alerts
+
+            <span class="alert-count">
+                12
+            </span>
+
+        </a>
+
+
+        <a href="reports.html"
+           class="menu-item">
+
+            <span>📄</span>
+            Reports
+
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <p class="breadcrumb">
+                Inventory
+            </p>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <div class="notification">
+                🔔
+                <span>3</span>
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div>
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Inventory Management
+            </h1>
+
+            <p>
+                Monitor stock levels and manage inventory movements.
+            </p>
+
+        </div>
+
+
+        <div class="inventory-actions">
+
+            <button
+                class="stock-in-btn"
+                onclick="openStockModal('in')">
+
+                ↓ Stock In
+
+            </button>
+
+
+            <button
+                class="stock-out-btn"
+                onclick="openStockModal('out')">
+
+                ↑ Stock Out
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         INVENTORY STATS
+    ========================================== -->
+
+    <section class="inventory-stats">
+
+
+        <div class="inventory-stat">
+
+            <div class="inventory-stat-icon blue">
+                📦
+            </div>
+
+            <div>
+
+                <span>
+                    Total Products
+                </span>
+
+                <strong id="totalProducts">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat">
+
+            <div class="inventory-stat-icon green">
+                📊
+            </div>
+
+            <div>
+
+                <span>
+                    Total Units
+                </span>
+
+                <strong id="totalUnits">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat">
+
+            <div class="inventory-stat-icon orange">
+                ⚠️
+            </div>
+
+            <div>
+
+                <span>
+                    Low Stock
+                </span>
+
+                <strong id="lowStock">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat">
+
+            <div class="inventory-stat-icon red">
+                ❌
+            </div>
+
+            <div>
+
+                <span>
+                    Out of Stock
+                </span>
+
+                <strong id="outOfStock">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         STOCK LEVELS
+    ========================================== -->
+
+    <section class="dashboard-card inventory-table-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Current Stock Levels
+                </h3>
+
+                <p>
+                    Real-time inventory status
+                </p>
+
+            </div>
+
+
+            <div class="inventory-search">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="inventorySearch"
+                    placeholder="Search product..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Product</th>
+
+                        <th>Category</th>
+
+                        <th>Current Stock</th>
+
+                        <th>Minimum Stock</th>
+
+                        <th>Stock Level</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="inventoryTableBody">
+
+                </tbody>
+
+            </table>
+
+
+            <div
+                id="noInventory"
+                class="no-inventory">
+
+                No products found.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         TRANSACTION HISTORY
+    ========================================== -->
+
+    <section class="dashboard-card transaction-history-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    📋 Stock Transaction History
+                </h3>
+
+                <p>
+                    Recent stock movements
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date & Time</th>
+
+                        <th>Product</th>
+
+                        <th>Type</th>
+
+                        <th>Quantity</th>
+
+                        <th>Previous Stock</th>
+
+                        <th>New Stock</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="transactionTableBody">
+
+                </tbody>
+
+            </table>
+
+
+            <div
+                id="noTransactions"
+                class="no-transactions">
+
+                No transactions yet.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     STOCK MODAL
+========================================== -->
+
+<div
+    id="stockModal"
+    class="modal-overlay">
+
+
+    <div class="stock-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Stock In
+                </h2>
+
+                <p>
+                    Update inventory quantity
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeStockModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form id="stockForm">
+
+
+            <div class="modal-body">
+
+
+                <div class="form-group">
+
+                    <label for="stockProduct">
+                        Select Product
+                        <span>*</span>
+                    </label>
+
+                    <select
+                        id="stockProduct"
+                        required>
+
+                        <option value="">
+                            Select product
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="stockQuantity">
+                        Quantity
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stockQuantity"
+                        min="1"
+                        placeholder="Enter quantity"
+                        required>
+
+                </div>
+
+
+                <div
+                    id="stockPreview"
+                    class="stock-preview">
+
+                    Select a product to view stock.
+
+                </div>
+
+
+                <p
+                    id="stockMessage"
+                    class="stock-message">
+                </p>
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-modal-btn"
+                    onclick="closeStockModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="confirm-stock-btn">
+
+                    Update Stock
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/inventory.js"></script>
+
+</body>
+
+</html>

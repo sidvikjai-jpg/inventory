@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+</head>
+
+<body class="dashboard-page">
+
+<aside class="sidebar">
+    <div class="sidebar-logo">📦 IntelliStock</div>
+
+    <div class="sidebar-menu">
+        <p class="menu-title">MAIN MENU</p>
+        <a href="dashboard.html" class="menu-item">🏠 Dashboard</a>
+        <a href="products.html" class="menu-item">📦 Products</a>
+        <a href="inventory.html" class="menu-item">📊 Inventory</a>
+        <a href="suppliers.html" class="menu-item">🚚 Suppliers</a>
+        <a href="sales.html" class="menu-item">💰 Sales</a>
+
+        <p class="menu-title second-title">INTELLIGENCE</p>
+        <a href="prediction.html" class="menu-item">🔮 Stock Prediction</a>
+        <a href="alerts.html" class="menu-item">⚠️ Alerts</a>
+        <a href="reports.html" class="menu-item active">📄 Reports</a>
+    </div>
+
+    <div class="sidebar-bottom">
+        <button id="logoutBtn" class="logout-btn">🚪 Logout</button>
+    </div>
+</aside>
+
+<main class="main-content">
+
+    <header class="topbar">
+        <div>
+            <p class="breadcrumb">Intelligence / Reports</p>
+        </div>
+
+        <div class="admin-area">
+            <div class="admin-profile">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <strong id="adminName">Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="reports-page">
+
+        <div class="reports-heading">
+            <div>
+                <h1>Inventory Reports</h1>
+                <p>View product, stock and sales summaries.</p>
+            </div>
+
+            <button id="printReport" class="report-btn">
+                🖨️ Print Report
+            </button>
+        </div>
+
+        <div class="report-cards">
+
+            <div class="report-card">
+                <p>Total Products</p>
+                <h2 id="totalProducts">0</h2>
+            </div>
+
+            <div class="report-card">
+                <p>Total Stock Units</p>
+                <h2 id="totalStock">0</h2>
+            </div>
+
+            <div class="report-card">
+                <p>Low Stock Products</p>
+                <h2 id="lowStock">0</h2>
+            </div>
+
+            <div class="report-card">
+                <p>Out of Stock</p>
+                <h2 id="outOfStock">0</h2>
+            </div>
+
+        </div>
+
+        <div class="report-section">
+            <h2>Product Inventory Report</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Minimum Stock</th>
+                            <th>Unit Price</th>
+                            <th>Stock Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyReport" class="empty-report" hidden>
+                No products available. Add products to generate a report.
+            </p>
+        </div>
+
+    </section>
+    
+<!-- SALES REPORT -->
+<section class="report-section sales-report">
+
+    <div class="reports-heading">
+        <div>
+            <h2>Sales Analytics</h2>
+            <p>Analyze sales performance, revenue and product demand.</p>
+        </div>
+    </div>
+
+    <!-- DATE FILTER -->
+    <div class="report-section">
+        <h3>Filter Sales by Date</h3>
+
+        <div class="sales-filter">
+            <div>
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate">
+            </div>
+
+            <div>
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate">
+            </div>
+
+            <button type="button" id="applySalesFilter" class="report-btn">
+                Apply Filter
+            </button>
+
+            <button type="button" id="resetSalesFilter" class="report-btn">
+                Reset
+            </button>
+        </div>
+
+        <p id="salesFilterMessage" role="status"></p>
+    </div>
+
+    <!-- SALES SUMMARY CARDS -->
+    <div class="report-cards sales-cards">
+
+        <div class="report-card">
+            <p>Total Sales Transactions</p>
+            <h2 id="totalSales">0</h2>
+        </div>
+
+        <div class="report-card">
+            <p>Total Revenue</p>
+            <h2 id="totalRevenue">₹0</h2>
+        </div>
+
+        <div class="report-card">
+            <p>Best-Selling Product</p>
+            <h2 id="bestSellingProduct">N/A</h2>
+        </div>
+
+    </div>
+
+    <!-- MONTHLY REVENUE -->
+    <div class="report-section">
+        <h2>Monthly Revenue Summary</h2>
+        <p>Revenue grouped by month for the selected sales period.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Transactions</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+
+                <tbody id="monthlyRevenueBody"></tbody>
+            </table>
+        </div>
+
+        <p id="emptyMonthlyRevenue" class="empty-report" hidden>
+            No monthly revenue data available.
+        </p>
+    </div>
+
+    <!-- TOP 5 PRODUCTS -->
+    <div class="report-section">
+        <h2>Top 5 Best-Selling Products</h2>
+        <p>Products ranked by total quantity sold.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Product</th>
+                        <th>Quantity Sold</th>
+                    </tr>
+                </thead>
+
+                <tbody id="topProductsBody"></tbody>
+            </table>
+        </div>
+
+        <p id="emptyTopProducts" class="empty-report" hidden>
+            No product sales available.
+        </p>
+    </div>
+
+    <!-- SALES CHART -->
+    <div class="report-section">
+        <h2>Monthly Sales Chart</h2>
+        <p>Visual comparison of monthly revenue.</p>
+
+        <div class="sales-chart-container">
+            <canvas id="monthlySalesChart"
+                    role="img"
+                    aria-label="Bar chart comparing monthly sales revenue">
+                Monthly sales revenue chart.
+            </canvas>
+        </div>
+
+        <p id="emptySalesChart" class="empty-report" hidden>
+            Complete a sale to display the chart.
+        </p>
+    </div>
+
+    <!-- SALES DETAILS TABLE -->
+    <div class="report-section">
+        <h2>Sales Transaction Details</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sale ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="salesReportBody"></tbody>
+            </table>
+        </div>
+
+        <p id="emptySalesReport" class="empty-report" hidden>
+            No sales records available yet.
+        </p>
+    </div>
+
+</section>
+</main>
+
+<script src="js/reports.js"></script>
+</body>
+</html>

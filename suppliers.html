@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Suppliers - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/suppliers.css">
+
+</head>
+
+<body class="dashboard-page">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        📦 IntelliStock
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MAIN MENU
+        </p>
+
+
+        <a href="dashboard.html"
+           class="menu-item">
+
+            <span>🏠</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="products.html"
+           class="menu-item">
+
+            <span>📦</span>
+            Products
+
+        </a>
+
+
+        <a href="inventory.html"
+           class="menu-item">
+
+            <span>📊</span>
+            Inventory
+
+        </a>
+
+
+        <a href="suppliers.html"
+           class="menu-item active">
+
+            <span>🚚</span>
+            Suppliers
+
+        </a>
+
+
+        <a href="sales.html"
+           class="menu-item">
+
+            <span>💰</span>
+            Sales
+
+        </a>
+
+
+        <p class="menu-title second-title">
+            INTELLIGENCE
+        </p>
+
+
+        <a href="prediction.html"
+           class="menu-item">
+
+            <span>🔮</span>
+            Stock Prediction
+
+        </a>
+
+
+        <a href="alerts.html"
+           class="menu-item">
+
+            <span>⚠️</span>
+            Alerts
+
+        </a>
+
+
+        <a href="reports.html"
+           class="menu-item">
+
+            <span>📄</span>
+            Reports
+
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button id="logoutBtn"
+                class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <p class="breadcrumb">
+                Suppliers
+            </p>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <div class="notification">
+                🔔
+                <span>3</span>
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div>
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Supplier Management
+            </h1>
+
+            <p>
+                Manage suppliers and their contact information.
+            </p>
+
+        </div>
+
+
+        <button class="add-supplier-btn"
+                onclick="openSupplierModal()">
+
+            + Add Supplier
+
+        </button>
+
+    </section>
+
+
+
+    <!-- STATS -->
+
+    <section class="supplier-stats">
+
+
+        <div class="supplier-stat">
+
+            <div class="supplier-icon blue">
+                🚚
+            </div>
+
+            <div>
+
+                <span>
+                    Total Suppliers
+                </span>
+
+                <strong id="totalSuppliers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="supplier-stat">
+
+            <div class="supplier-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    Active Suppliers
+                </span>
+
+                <strong id="activeSuppliers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="supplier-stat">
+
+            <div class="supplier-icon orange">
+                📦
+            </div>
+
+            <div>
+
+                <span>
+                    Categories
+                </span>
+
+                <strong id="supplierCategories">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="supplier-stat">
+
+            <div class="supplier-icon purple">
+                📋
+            </div>
+
+            <div>
+
+                <span>
+                    Products Supplied
+                </span>
+
+                <strong id="suppliedProducts">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SEARCH -->
+
+    <section class="supplier-toolbar">
+
+        <div class="supplier-search">
+
+            🔍
+
+            <input
+                type="text"
+                id="supplierSearch"
+                placeholder="Search supplier...">
+
+        </div>
+
+
+        <select id="supplierStatusFilter">
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="Active">
+                Active
+            </option>
+
+            <option value="Inactive">
+                Inactive
+            </option>
+
+        </select>
+
+    </section>
+
+
+
+    <!-- SUPPLIER TABLE -->
+
+    <section class="dashboard-card supplier-table-card">
+
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    All Suppliers
+                </h3>
+
+                <p>
+                    Supplier directory
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Supplier</th>
+
+                        <th>Contact</th>
+
+                        <th>Email</th>
+
+                        <th>Category</th>
+
+                        <th>Products</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="supplierTableBody">
+
+                </tbody>
+
+            </table>
+
+
+            <div id="noSuppliers"
+                 class="no-suppliers">
+
+                No suppliers found.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- SUPPLIER MODAL -->
+
+<div id="supplierModal"
+     class="modal-overlay">
+
+
+    <div class="supplier-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="supplierModalTitle">
+                    Add Supplier
+                </h2>
+
+                <p>
+                    Enter supplier information
+                </p>
+
+            </div>
+
+
+            <button class="close-modal"
+                    onclick="closeSupplierModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form id="supplierForm">
+
+
+            <div class="modal-body">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Supplier Name
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="supplierName"
+                        placeholder="Enter supplier name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Contact Number
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="supplierPhone"
+                        placeholder="Enter phone number"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="supplierEmail"
+                        placeholder="Enter email address"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                        <span>*</span>
+                    </label>
+
+                    <select id="supplierCategory"
+                            required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Accessories">
+                            Accessories
+                        </option>
+
+                        <option value="Office">
+                            Office
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="supplierStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <p id="supplierMessage"
+                   class="supplier-message">
+                </p>
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+                <button type="button"
+                        class="cancel-btn"
+                        onclick="closeSupplierModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button type="submit"
+                        class="save-supplier-btn">
+
+                    ✓ Save Supplier
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/suppliers.js"></script>
+
+</body>
+
+</html>

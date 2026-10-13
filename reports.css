@@ -1,0 +1,391 @@
+
+/* ==============================
+   INTELLISTOCK REPORTS
+============================== */
+
+.reports-page {
+    padding: 24px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.reports-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.reports-heading h1 {
+    margin-bottom: 8px;
+    color: #0f172a;
+}
+
+.reports-heading p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Buttons */
+
+.report-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.report-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.report-btn:focus-visible,
+.sales-filter input:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* Summary Cards */
+
+.report-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.report-card,
+.report-section {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.report-card {
+    border: 1px solid #edf2f7;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.report-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.08);
+}
+
+.report-card p {
+    color: #64748b;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.report-card h2 {
+    font-size: 28px;
+    color: #1e293b;
+    overflow-wrap: anywhere;
+}
+
+/* Report Sections */
+
+.report-section {
+    margin-bottom: 24px;
+}
+
+.report-section h2 {
+    margin-bottom: 16px;
+    color: #0f172a;
+    font-size: 21px;
+}
+
+.report-section h3 {
+    margin-bottom: 16px;
+    color: #0f172a;
+    font-size: 17px;
+}
+
+.report-section > p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Sales Analytics heading */
+
+.sales-report > .reports-heading {
+    margin-bottom: 22px;
+}
+
+.sales-report > .reports-heading h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.sales-report > .reports-heading p {
+    margin: 0;
+}
+
+/* Date Filter */
+
+.sales-filter {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.sales-filter > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+.sales-filter label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.sales-filter input {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    color: #0f172a;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.sales-filter .report-btn {
+    min-height: 42px;
+}
+
+#salesFilterMessage {
+    margin-top: 12px;
+    color: #dc2626;
+    font-size: 13px;
+}
+
+/* Sales Summary Cards */
+
+.sales-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sales-cards .report-card {
+    border-top: 3px solid #2563eb;
+}
+
+.sales-cards .report-card:nth-child(2) {
+    border-top-color: #059669;
+}
+
+.sales-cards .report-card:nth-child(3) {
+    border-top-color: #7c3aed;
+}
+
+/* Tables */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.table-container th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+}
+
+.table-container tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table-container tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Empty Messages */
+
+.empty-report {
+    padding: 20px 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Canvas Chart */
+
+.sales-chart-container {
+    width: 100%;
+    min-width: 0;
+    min-height: 100px;
+    overflow: hidden;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+#monthlySalesChart {
+    display: block;
+    max-width: 100%;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 1100px) {
+    .report-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sales-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .reports-page {
+        padding: 16px;
+    }
+
+    .report-card,
+    .report-section {
+        padding: 16px;
+    }
+
+    .report-cards,
+    .sales-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .reports-heading h1 {
+        font-size: 24px;
+    }
+
+    .sales-report > .reports-heading h2 {
+        font-size: 22px;
+    }
+
+    .sales-filter {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .sales-filter > div {
+        flex-basis: auto;
+    }
+
+    .sales-filter .report-btn {
+        width: 100%;
+    }
+
+    .table-container th,
+    .table-container td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Print Layout */
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 12mm;
+    }
+
+    body.dashboard-page {
+        background: white !important;
+        color: black !important;
+    }
+
+    .sidebar,
+    .topbar,
+    .report-btn,
+    .sales-filter {
+        display: none !important;
+    }
+
+    .main-content {
+        margin: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .reports-page {
+        padding: 0 !important;
+    }
+
+    .report-card,
+    .report-section {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+        margin-bottom: 12px;
+    }
+
+    .report-cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .sales-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .report-card {
+        padding: 12px;
+    }
+
+    .report-card h2 {
+        font-size: 20px;
+    }
+
+    .table-container {
+        overflow: visible;
+    }
+
+    .table-container table {
+        width: 100%;
+    }
+
+    .table-container th,
+    .table-container td {
+        white-space: normal;
+        padding: 7px;
+        font-size: 10px;
+    }
+
+    .sales-chart-container {
+        break-inside: avoid;
+    }
+}

@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/prediction.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">📦 IntelliStock</div>
+
+        <div class="sidebar-menu">
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="menu-item"><span>🏠</span> Dashboard</a>
+            <a href="products.html" class="menu-item"><span>📦</span> Products</a>
+            <a href="inventory.html" class="menu-item"><span>📊</span> Inventory</a>
+            <a href="suppliers.html" class="menu-item"><span>🚚</span> Suppliers</a>
+            <a href="sales.html" class="menu-item"><span>💰</span> Sales</a>
+
+            <p class="menu-title second-title">INTELLIGENCE</p>
+
+            <a href="prediction.html" class="menu-item active"><span>🔮</span> Stock Prediction</a>
+            <a href="alerts.html" class="menu-item"><span>⚠️</span> Alerts</a>
+            <a href="reports.html" class="menu-item"><span>📄</span> Reports</a>
+        </div>
+
+        <div class="sidebar-bottom">
+            <button id="logoutBtn" class="logout-btn">🚪 Logout</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">Stock Prediction</p>
+            </div>
+
+            <div class="admin-area">
+                <div class="admin-profile">
+                    <div class="profile-avatar">A</div>
+                    <div>
+                        <strong id="adminName">Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <div>
+                <h1>Stock Prediction</h1>
+                <p>Monitor inventory levels and identify products requiring restocking.</p>
+            </div>
+
+            <button type="button" id="refreshPrediction"
+                    class="prediction-refresh">
+                ↻ Refresh Prediction
+            </button>
+        </section>
+
+        <section class="prediction-stats">
+
+            <div class="prediction-card">
+                <span>Total Products</span>
+                <strong id="totalProducts">0</strong>
+            </div>
+
+            <div class="prediction-card">
+                <span>Low Stock Products</span>
+                <strong id="lowStockCount">0</strong>
+            </div>
+
+            <div class="prediction-card">
+                <span>Out of Stock</span>
+                <strong id="outStockCount">0</strong>
+            </div>
+
+            <div class="prediction-card">
+                <span>Restock Required</span>
+                <strong id="restockCount">0</strong>
+            </div>
+
+        </section>
+
+        <section class="dashboard-card prediction-table-card">
+
+            <div class="card-header">
+                <div>
+                    <h3>Stock Analysis</h3>
+                    <p>Product-wise inventory and restock recommendations.</p>
+                </div>
+
+                <input type="search" id="predictionSearch"
+                       placeholder="Search product...">
+            </div>
+
+            <div id="predictionMessage" class="prediction-message"
+                 role="status" aria-live="polite"></div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Current Stock</th>
+                            <th>Minimum Stock</th>
+                            <th>Status</th>
+                            <th>Suggested Restock</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="predictionTableBody"></tbody>
+                </table>
+
+                <p id="predictionEmpty" class="prediction-empty" hidden>
+                    No products found.
+                </p>
+            </div>
+
+        </section>
+
+        <p class="prediction-note">
+            Recommendation is calculated using current stock and minimum stock.
+            It is a rule-based estimate, not an AI demand forecast.
+        </p>
+
+    </main>
+
+    <script src="js/prediction.js"></script>
+</body>
+</html>

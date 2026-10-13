@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - IntelliStock</title>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        📦 IntelliStock
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MAIN MENU
+        </p>
+
+
+        <a href="dashboard.html"
+           class="menu-item active">
+
+            <span>🏠</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="products.html"
+           class="menu-item">
+
+            <span>📦</span>
+            Products
+
+        </a>
+
+
+        <a href="inventory.html"
+           class="menu-item">
+
+            <span>📊</span>
+            Inventory
+
+        </a>
+
+
+        <a href="suppliers.html"
+           class="menu-item">
+
+            <span>🚚</span>
+            Suppliers
+
+        </a>
+
+
+        <a href="sales.html"
+           class="menu-item">
+
+            <span>💰</span>
+            Sales
+
+        </a>
+
+
+        <p class="menu-title second-title">
+            INTELLIGENCE
+        </p>
+
+
+        <a href="prediction.html"
+           class="menu-item">
+
+            <span>🔮</span>
+            Stock Prediction
+
+        </a>
+
+
+        <a href="alerts.html"
+           class="menu-item">
+
+            <span>⚠️</span>
+            Alerts
+            <span class="alert-count">12</span>
+
+        </a>
+
+
+        <a href="reports.html"
+           class="menu-item">
+
+            <span>📄</span>
+            Reports
+
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="main-content">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <p class="breadcrumb">
+                Dashboard
+            </p>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <div class="notification">
+                🔔
+                <span>3</span>
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome-section">
+
+        <div>
+
+            <h1>
+                Welcome back, <span id="welcomeName">Admin</span> 👋
+            </h1>
+
+            <p>
+                Here's what's happening with your inventory today.
+            </p>
+
+        </div>
+
+
+        <div class="date-box">
+
+            📅
+            <span id="currentDate"></span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STAT CARDS
+    ========================= -->
+
+    <section class="stats-grid">
+
+
+        <!-- PRODUCTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                📦
+            </div>
+
+            <div class="stat-info">
+
+                <p>Total Products</p>
+
+                <h2 id="totalProducts">
+                    120
+                </h2>
+
+                <span class="positive">
+                    ↑ 12%
+                </span>
+
+                <span class="small-text">
+                    from last month
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STOCK -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                📊
+            </div>
+
+            <div class="stat-info">
+
+                <p>Total Stock</p>
+
+                <h2 id="totalStock">
+                    2,450
+                </h2>
+
+                <span class="positive">
+                    ↑ 8%
+                </span>
+
+                <span class="small-text">
+                    from last month
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOW STOCK -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                ⚠️
+            </div>
+
+            <div class="stat-info">
+
+                <p>Low Stock</p>
+
+                <h2 id="lowStock">
+                    12
+                </h2>
+
+                <span class="negative">
+                    ↑ 3
+                </span>
+
+                <span class="small-text">
+                    needs attention
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- OUT OF STOCK -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon red">
+                ❌
+            </div>
+
+            <div class="stat-info">
+
+                <p>Out of Stock</p>
+
+                <h2 id="outOfStock">
+                    4
+                </h2>
+
+                <span class="negative">
+                    ↑ 2
+                </span>
+
+                <span class="small-text">
+                    products
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CHART + PREDICTION
+    ========================= -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- SALES CHART -->
+
+        <div class="dashboard-card chart-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Sales Overview
+                    </h3>
+
+                    <p>
+                        Sales performance for the last 7 days
+                    </p>
+
+                </div>
+
+
+                <select id="chartPeriod">
+
+                    <option value="7">
+                        Last 7 Days
+                    </option>
+
+                    <option value="30">
+                        Last 30 Days
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="chart">
+
+                <div class="y-axis">
+
+                    <span>100</span>
+                    <span>80</span>
+                    <span>60</span>
+                    <span>40</span>
+                    <span>20</span>
+                    <span>0</span>
+
+                </div>
+
+
+                <div class="bars">
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:55%">
+
+                        </div>
+
+                        <span>Mon</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:70%">
+
+                        </div>
+
+                        <span>Tue</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:45%">
+
+                        </div>
+
+                        <span>Wed</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:85%">
+
+                        </div>
+
+                        <span>Thu</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:65%">
+
+                        </div>
+
+                        <span>Fri</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:90%">
+
+                        </div>
+
+                        <span>Sat</span>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="height:75%">
+
+                        </div>
+
+                        <span>Sun</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PREDICTION CARD -->
+
+        <div class="dashboard-card prediction-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        🔮 Stock Prediction
+                    </h3>
+
+                    <p>
+                        Intelligent forecast
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="prediction-content">
+
+                <div class="prediction-icon">
+                    🔮
+                </div>
+
+                <h2>
+                    91 Units
+                </h2>
+
+                <p>
+                    Expected demand for next 7 days
+                </p>
+
+
+                <div class="prediction-details">
+
+                    <div>
+
+                        <span>
+                            Current Stock
+                        </span>
+
+                        <strong>
+                            40
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Suggested Order
+                        </span>
+
+                        <strong class="blue-text">
+                            51
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <a href="prediction.html"
+                   class="prediction-btn">
+
+                    View Prediction →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BOTTOM GRID
+    ========================= -->
+
+    <section class="bottom-grid">
+
+
+        <!-- LOW STOCK TABLE -->
+
+        <div class="dashboard-card table-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        ⚠️ Low Stock Products
+                    </h3>
+
+                    <p>
+                        Products that need restocking
+                    </p>
+
+                </div>
+
+
+                <a href="alerts.html">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Product</th>
+
+                            <th>Category</th>
+
+                            <th>Stock</th>
+
+                            <th>Minimum</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                💻 Laptop
+                            </td>
+
+                            <td>
+                                Electronics
+                            </td>
+
+                            <td>
+                                <strong>5</strong>
+                            </td>
+
+                            <td>
+                                15
+                            </td>
+
+                            <td>
+                                <span class="status danger">
+                                    Low Stock
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                🖱️ Mouse
+                            </td>
+
+                            <td>
+                                Accessories
+                            </td>
+
+                            <td>
+                                <strong>8</strong>
+                            </td>
+
+                            <td>
+                                20
+                            </td>
+
+                            <td>
+                                <span class="status danger">
+                                    Low Stock
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                ⌨️ Keyboard
+                            </td>
+
+                            <td>
+                                Accessories
+                            </td>
+
+                            <td>
+                                <strong>4</strong>
+                            </td>
+
+                            <td>
+                                10
+                            </td>
+
+                            <td>
+                                <span class="status warning">
+                                    Reorder
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                🎧 Headphones
+                            </td>
+
+                            <td>
+                                Electronics
+                            </td>
+
+                            <td>
+                                <strong>7</strong>
+                            </td>
+
+                            <td>
+                                15
+                            </td>
+
+                            <td>
+                                <span class="status danger">
+                                    Low Stock
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RECENT TRANSACTIONS -->
+
+        <div class="dashboard-card transaction-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Recent Transactions
+                    </h3>
+
+                    <p>
+                        Latest inventory activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="transactions">
+
+
+                <div class="transaction">
+
+                    <div class="transaction-icon stock-in">
+                        ↓
+                    </div>
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Stock Received
+                        </strong>
+
+                        <span>
+                            Laptop - 20 units
+                        </span>
+
+                    </div>
+
+                    <small>
+                        10 min ago
+                    </small>
+
+                </div>
+
+
+                <div class="transaction">
+
+                    <div class="transaction-icon stock-out">
+                        ↑
+                    </div>
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Stock Sold
+                        </strong>
+
+                        <span>
+                            Mouse - 5 units
+                        </span>
+
+                    </div>
+
+                    <small>
+                        25 min ago
+                    </small>
+
+                </div>
+
+
+                <div class="transaction">
+
+                    <div class="transaction-icon stock-in">
+                        ↓
+                    </div>
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Stock Received
+                        </strong>
+
+                        <span>
+                            Keyboard - 30 units
+                        </span>
+
+                    </div>
+
+                    <small>
+                        1 hour ago
+                    </small>
+
+                </div>
+
+
+                <div class="transaction">
+
+                    <div class="transaction-icon stock-out">
+                        ↑
+                    </div>
+
+                    <div class="transaction-info">
+
+                        <strong>
+                            Stock Sold
+                        </strong>
+
+                        <span>
+                            Headphones - 3 units
+                        </span>
+
+                    </div>
+
+                    <small>
+                        2 hours ago
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

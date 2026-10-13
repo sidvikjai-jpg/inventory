@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sales - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/sales.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        📦 IntelliStock
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-title">
+            MAIN MENU
+        </p>
+
+
+        <a href="dashboard.html"
+           class="menu-item">
+
+            <span>🏠</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="products.html"
+           class="menu-item">
+
+            <span>📦</span>
+            Products
+
+        </a>
+
+
+        <a href="inventory.html"
+           class="menu-item">
+
+            <span>📊</span>
+            Inventory
+
+        </a>
+
+
+        <a href="suppliers.html"
+           class="menu-item">
+
+            <span>🚚</span>
+            Suppliers
+
+        </a>
+
+
+        <a href="sales.html"
+           class="menu-item active">
+
+            <span>💰</span>
+            Sales
+
+        </a>
+
+
+        <p class="menu-title second-title">
+            INTELLIGENCE
+        </p>
+
+
+        <a href="prediction.html"
+           class="menu-item">
+
+            <span>🔮</span>
+            Stock Prediction
+
+        </a>
+
+
+        <a href="alerts.html"
+           class="menu-item">
+
+            <span>⚠️</span>
+            Alerts
+
+            <span class="alert-count">
+                12
+            </span>
+
+        </a>
+
+
+        <a href="reports.html"
+           class="menu-item">
+
+            <span>📄</span>
+            Reports
+
+        </a>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <p class="breadcrumb">
+                Sales
+            </p>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <div class="notification">
+
+                🔔
+
+                <span>
+                    3
+                </span>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div>
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Sales Management
+            </h1>
+
+            <p>
+                Record sales and automatically update inventory.
+            </p>
+
+        </div>
+
+
+        <button
+            class="new-sale-btn"
+            onclick="openSaleModal()">
+
+            + New Sale
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         SALES STATISTICS
+    ========================================== -->
+
+    <section class="sales-stats">
+
+
+        <div class="sales-stat">
+
+            <div class="sales-stat-icon blue">
+                💰
+            </div>
+
+            <div>
+
+                <span>
+                    Total Sales
+                </span>
+
+                <strong id="totalSales">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="sales-stat">
+
+            <div class="sales-stat-icon green">
+                📈
+            </div>
+
+            <div>
+
+                <span>
+                    Today's Sales
+                </span>
+
+                <strong id="todaySales">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="sales-stat">
+
+            <div class="sales-stat-icon orange">
+                🛒
+            </div>
+
+            <div>
+
+                <span>
+                    Items Sold
+                </span>
+
+                <strong id="itemsSold">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="sales-stat">
+
+            <div class="sales-stat-icon purple">
+                📋
+            </div>
+
+            <div>
+
+                <span>
+                    Transactions
+                </span>
+
+                <strong id="transactionCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         SALES TABLE
+    ========================================== -->
+
+    <section class="dashboard-card sales-table-card">
+
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+                    Sales History
+                </h3>
+
+                <p>
+                    Recent sales transactions
+                </p>
+
+            </div>
+
+
+            <div class="sales-search">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="salesSearch"
+                    placeholder="Search sale...">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Sale ID</th>
+
+                        <th>Date & Time</th>
+
+                        <th>Product</th>
+
+                        <th>Quantity</th>
+
+                        <th>Unit Price</th>
+
+                        <th>Total</th>
+
+                        <th>Customer</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="salesTableBody">
+
+                </tbody>
+
+            </table>
+
+
+            <div
+                id="noSales"
+                class="no-sales">
+
+                No sales recorded yet.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     NEW SALE MODAL
+========================================== -->
+
+<div
+    id="saleModal"
+    class="modal-overlay">
+
+
+    <div class="sale-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Create New Sale
+                </h2>
+
+                <p>
+                    Record a product sale
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeSaleModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form id="saleForm">
+
+
+            <div class="modal-body">
+
+
+                <!-- PRODUCT -->
+
+                <div class="form-group">
+
+                    <label for="saleProduct">
+
+                        Product
+
+                        <span>
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <select
+                        id="saleProduct"
+                        required>
+
+                        <option value="">
+                            Select product
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- QUANTITY -->
+
+                <div class="form-group">
+
+                    <label for="saleQuantity">
+
+                        Quantity
+
+                        <span>
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="saleQuantity"
+                        min="1"
+                        placeholder="Enter quantity"
+                        required>
+
+                </div>
+
+
+
+                <!-- CUSTOMER -->
+
+                <div class="form-group">
+
+                    <label for="customerName">
+
+                        Customer Name
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter customer name">
+
+                </div>
+
+
+
+                <!-- PRICE PREVIEW -->
+
+                <div
+                    id="salePreview"
+                    class="sale-preview">
+
+                    Select a product to view price.
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <p
+                    id="saleMessage"
+                    class="sale-message">
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-sale-btn"
+                    onclick="closeSaleModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="confirm-sale-btn">
+
+                    ✓ Complete Sale
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/sales.js"></script>
+
+</body>
+
+</html>

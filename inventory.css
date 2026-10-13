@@ -1,0 +1,653 @@
+/* ==========================================
+   INVENTORY PAGE
+========================================== */
+
+.inventory-actions {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.stock-in-btn,
+.stock-out-btn {
+    border: none;
+
+    padding: 11px 17px;
+
+    border-radius: 7px;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.stock-in-btn {
+    background: #16a34a;
+}
+
+
+.stock-in-btn:hover {
+    background: #15803d;
+}
+
+
+.stock-out-btn {
+    background: #dc2626;
+}
+
+
+.stock-out-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* ==========================================
+   INVENTORY STATS
+========================================== */
+
+.inventory-stats {
+    padding: 0 35px 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+
+.inventory-stat {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.inventory-stat-icon {
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.inventory-stat-icon.blue {
+    background: #dbeafe;
+}
+
+
+.inventory-stat-icon.green {
+    background: #dcfce7;
+}
+
+
+.inventory-stat-icon.orange {
+    background: #ffedd5;
+}
+
+
+.inventory-stat-icon.red {
+    background: #fee2e2;
+}
+
+
+.inventory-stat span {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+
+.inventory-stat strong {
+    font-size: 21px;
+
+    color: #0f172a;
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.inventory-table-card {
+    margin: 0 35px 20px;
+}
+
+
+.inventory-table-card table {
+    min-width: 850px;
+}
+
+
+.inventory-search {
+    border: 1px solid #e2e8f0;
+
+    border-radius: 7px;
+
+    padding: 6px 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #94a3b8;
+}
+
+
+.inventory-search input {
+    border: none;
+
+    outline: none;
+
+    font-size: 11px;
+
+    width: 180px;
+}
+
+
+.stock-number {
+    font-weight: bold;
+
+    color: #0f172a;
+}
+
+
+.stock-number.low {
+    color: #ea580c;
+}
+
+
+.stock-number.empty {
+    color: #dc2626;
+}
+
+
+/* ==========================================
+   STOCK PROGRESS
+========================================== */
+
+.stock-progress {
+    width: 100px;
+
+    height: 7px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.stock-progress-bar {
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #16a34a;
+}
+
+
+.stock-progress-bar.low {
+    background: #f97316;
+}
+
+
+.stock-progress-bar.empty {
+    background: #ef4444;
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.inventory-status {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.inventory-status.good {
+    background: #dcfce7;
+
+    color: #16a34a;
+}
+
+
+.inventory-status.low {
+    background: #ffedd5;
+
+    color: #ea580c;
+}
+
+
+.inventory-status.empty {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* ==========================================
+   ACTION
+========================================== */
+
+.quick-stock-btn {
+    border: none;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 6px 9px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.quick-stock-btn:hover {
+    background: #dbeafe;
+}
+
+
+/* ==========================================
+   TRANSACTION HISTORY
+========================================== */
+
+.transaction-history-card {
+    margin: 0 35px 35px;
+}
+
+
+.transaction-history-card table {
+    min-width: 700px;
+}
+
+
+.transaction-type {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.transaction-type.in {
+    background: #dcfce7;
+
+    color: #16a34a;
+}
+
+
+.transaction-type.out {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+.transaction-quantity.in {
+    color: #16a34a;
+
+    font-weight: bold;
+}
+
+
+.transaction-quantity.out {
+    color: #dc2626;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   EMPTY STATES
+========================================== */
+
+.no-inventory,
+.no-transactions {
+    display: none;
+
+    text-align: center;
+
+    padding: 35px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 999;
+}
+
+
+.modal-overlay.show {
+    display: flex;
+}
+
+
+.stock-modal {
+    width: 430px;
+
+    max-width: 92%;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+}
+
+
+.modal-header {
+    padding: 20px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.modal-header h2 {
+    font-size: 18px;
+
+    margin-bottom: 4px;
+}
+
+
+.modal-header p {
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+.close-modal {
+    border: none;
+
+    background: #f1f5f9;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    color: #64748b;
+}
+
+
+.close-modal:hover {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+.modal-body {
+    padding: 22px;
+}
+
+
+.modal-body .form-group {
+    margin-bottom: 18px;
+}
+
+
+.modal-body label {
+    display: block;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+
+.modal-body label span {
+    color: #dc2626;
+}
+
+
+.modal-body select,
+.modal-body input {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    background: white;
+}
+
+
+.modal-body select:focus,
+.modal-body input:focus {
+    border-color: #2563eb;
+}
+
+
+.stock-preview {
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+.stock-preview strong {
+    color: #0f172a;
+}
+
+
+.stock-message {
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+
+.modal-actions {
+    padding: 15px 20px;
+
+    background: #f8fafc;
+
+    border-top: 1px solid #e2e8f0;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+
+.cancel-modal-btn {
+    padding: 10px 17px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    color: #475569;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+.confirm-stock-btn {
+    padding: 10px 18px;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .inventory-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .inventory-actions {
+        width: 100%;
+    }
+
+    .stock-in-btn,
+    .stock-out-btn {
+        flex: 1;
+    }
+
+    .inventory-stats {
+        grid-template-columns: 1fr;
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+    .inventory-table-card,
+    .transaction-history-card {
+        margin-left: 20px;
+
+        margin-right: 20px;
+    }
+
+    .inventory-search input {
+        width: 120px;
+    }
+
+}

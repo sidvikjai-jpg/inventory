@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Alerts - IntelliStock</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/alerts.css">
+</head>
+
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">📦 IntelliStock</div>
+
+        <div class="sidebar-menu">
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="menu-item">🏠 Dashboard</a>
+            <a href="products.html" class="menu-item">📦 Products</a>
+            <a href="inventory.html" class="menu-item">📊 Inventory</a>
+            <a href="suppliers.html" class="menu-item">🚚 Suppliers</a>
+            <a href="sales.html" class="menu-item">💰 Sales</a>
+
+            <p class="menu-title second-title">INTELLIGENCE</p>
+
+            <a href="prediction.html" class="menu-item">🔮 Stock Prediction</a>
+            <a href="alerts.html" class="menu-item active">
+                ⚠️ Alerts <span id="sidebarAlertCount" class="alert-count">0</span>
+            </a>
+            <a href="reports.html" class="menu-item">📄 Reports</a>
+        </div>
+
+        <div class="sidebar-bottom">
+            <button id="logoutBtn" class="logout-btn">🚪 Logout</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">Inventory Alerts</p>
+            </div>
+
+            <div class="admin-area">
+                <div class="admin-profile">
+                    <div class="profile-avatar">A</div>
+                    <div>
+                        <strong id="adminName">Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <div>
+                <h1>Stock Alerts</h1>
+                <p>Monitor low-stock products and products that need immediate restocking.</p>
+            </div>
+
+            <button type="button" id="refreshAlerts" class="refresh-alert-btn">
+                ↻ Refresh Alerts
+            </button>
+        </section>
+
+        <section class="alert-stats">
+
+            <div class="alert-stat-card">
+                <span>Total Alerts</span>
+                <strong id="totalAlerts">0</strong>
+            </div>
+
+            <div class="alert-stat-card">
+                <span>Low Stock</span>
+                <strong id="lowStockAlerts">0</strong>
+            </div>
+
+            <div class="alert-stat-card">
+                <span>Out of Stock</span>
+                <strong id="outOfStockAlerts">0</strong>
+            </div>
+
+        </section>
+
+        <section class="dashboard-card alerts-card">
+
+            <div class="card-header">
+                <div>
+                    <h3>Alert Details</h3>
+                    <p>Alerts are generated using current stock levels.</p>
+                </div>
+
+                <select id="alertFilter">
+                    <option value="all">All Alerts</option>
+                    <option value="low">Low Stock</option>
+                    <option value="out">Out of Stock</option>
+                </select>
+            </div>
+
+            <p id="alertMessage" class="alert-message" role="status" aria-live="polite"></p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Current Stock</th>
+                            <th>Minimum Stock</th>
+                            <th>Alert Type</th>
+                            <th>Suggested Restock</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="alertsTableBody"></tbody>
+                </table>
+
+                <p id="noAlerts" class="no-alerts" hidden>
+                    No alerts found. All products have sufficient stock.
+                </p>
+            </div>
+
+        </section>
+
+        <div class="alert-info">
+            <strong>Note:</strong>
+            Alerts are generated automatically from your saved product quantities.
+            Refresh after making inventory changes to see the latest status.
+        </div>
+
+    </main>
+
+    <script src="js/alerts.js"></script>
+</body>
+</html>
